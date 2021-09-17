@@ -1,0 +1,309 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Togo ID Schema",
+  "additionalProperties": false,
+  "title": "Bermuda ID Schema",
+  "type": "object",
+  "definitions": {
+    "simpleType": {
+      "uniqueItems": true,
+      "additionalItems": false,
+      "type": "array",
+      "items": {
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "language",
+          "value"
+        ],
+        "properties": {
+          "language": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "documentType": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    },
+    "biometricsType": {
+      "additionalProperties": false,
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string"
+        },
+        "version": {
+          "type": "number",
+          "minimum": 0
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "properties": {
+    "identity": {
+      "additionalProperties": false,
+      "type": "object",
+      "required": [
+        "IDSchemaVersion",
+        "firstName",
+        "lastName",
+        "dateOfBirth",
+        "gender",
+        "residenceStatus",
+        "state",
+        "city",
+        "postalCode",
+        "individualBiometrics"
+      ],
+      "properties": {
+        "IDSchemaVersion": {
+          "bioAttributes": [],
+          "fieldCategory": "none",
+          "format": "none",
+          "type": "number",
+          "fieldType": "default",
+          "minimum": 0
+        },
+        "UIN": {
+          "bioAttributes": [],
+          "fieldCategory": "none",
+          "format": "none",
+          "type": "string",
+          "fieldType": "default"
+        },
+        "firstName": {
+          "validators": [
+            {
+              "validator": "^(?=.{3,50}$).*",
+              "arguments": [],
+              "type": "regex"
+            }
+          ],
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "lastName": {
+          "validators": [
+            {
+              "validator": "^(?=.{0,50}$).*",
+              "arguments": [],
+              "type": "regex"
+            }
+          ],
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "gender": {
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "dateOfBirth": {
+          "validators": [
+            {
+              "validator": "^([0][1-9]|[1-2][0-9]|3[0-1])-([0][1-9]|1[0-2])-(1869|18[7-9][0-9]|19[0-9][0-9]|20[0-9][0-9])$",
+              "arguments": [],
+              "type": "regex"
+            }
+          ],
+          "fieldCategory": "pvt",
+          "format": "none",
+          "type": "string",
+          "fieldType": "default"
+        },
+        "phone": {
+          "validators": [
+            {
+              "validator": "([6-9]{1})([0-9]{9})$",
+              "arguments": [],
+              "type": "regex"
+            }
+          ],
+          "fieldCategory": "pvt",
+          "format": "none",
+          "type": "string",
+          "fieldType": "default"
+        },
+        "email": {
+          "fieldCategory": "pvt",
+          "format": "none",
+          "type": "string",
+          "fieldType": "default"
+        },
+        "state": {
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "city": {
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "street": {
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "houseName": {
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "postalCode": {
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+
+        "residenceStatus": {
+          "fieldCategory": "kyc",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "parentOrGuardianRID": {
+          "fieldCategory": "optional",
+          "format": "none",
+          "fieldType": "default",
+          "type": "integer"
+        },
+        "parentOrGuardianUIN": {
+          "fieldCategory": "optional",
+          "format": "none",
+          "fieldType": "default",
+          "type": "integer"
+        },
+        "individualBiometrics": {
+          "bioAttributes": [
+            "leftEye",
+            "rightEye",
+            "rightIndex",
+            "rightLittle",
+            "rightRing",
+            "rightMiddle",
+            "leftIndex",
+            "leftLittle",
+            "leftRing",
+            "leftMiddle",
+            "leftThumb",
+            "rightThumb",
+            "face"
+          ],
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/biometricsType"
+        },
+        "individualAuthBiometrics": {
+          "bioAttributes": [
+            "leftEye",
+            "rightEye",
+            "rightIndex",
+            "rightLittle",
+            "rightRing",
+            "rightMiddle",
+            "leftIndex",
+            "leftLittle",
+            "leftRing",
+            "leftMiddle",
+            "leftThumb",
+            "rightThumb",
+            "face"
+          ],
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/biometricsType"
+        },
+        "parentOrGuardianBiometrics": {
+          "bioAttributes": [
+            "leftEye",
+            "rightEye",
+            "rightIndex",
+            "rightLittle",
+            "rightRing",
+            "rightMiddle",
+            "leftIndex",
+            "leftLittle",
+            "leftRing",
+            "leftMiddle",
+            "leftThumb",
+            "rightThumb",
+            "face"
+          ],
+          "fieldCategory": "evidence",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/biometricsType"
+        },
+        "proofOfConsent": {
+          "fieldCategory": "evidence",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/documentType"
+        },
+        "proofOfIdentity": {
+          "fieldCategory": "evidence",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/documentType"
+        },
+        "proofOfRelationship": {
+          "fieldCategory": "evidence",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/documentType"
+        },
+        "proofOfAddress": {
+          "fieldCategory": "evidence",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/documentType"
+        },
+        "proofOfDateOfBirth": {
+          "fieldCategory": "evidence",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/documentType"
+        },
+        "proofOfException": {
+          "bioAttributes": [],
+          "fieldCategory": "evidence",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/documentType"
+        }
+      }
+    }
+  }
+}
