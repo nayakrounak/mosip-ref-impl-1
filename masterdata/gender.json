@@ -1,0 +1,20 @@
+[
+  {
+    "code": "MLE",
+    "value": "Male",
+    "langCode": "eng",
+    "active": true
+  },
+  {
+    "code": "FLE",
+    "value": "Female",
+    "langCode": "eng",
+    "active": true
+  },
+  {
+    "code": "OTH",
+    "value": "Others",
+    "langCode": "eng",
+    "active": true
+  }
+]

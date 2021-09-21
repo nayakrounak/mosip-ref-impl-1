@@ -125,7 +125,7 @@
         "dateOfBirth": {
           "validators": [
             {
-              "validator": "^([0][1-9]|[1-2][0-9]|3[0-1])-([0][1-9]|1[0-2])-(1869|18[7-9][0-9]|19[0-9][0-9]|20[0-9][0-9])$",
+              "validator": "^(1869|18[7-9][0-9]|19[0-9][0-9]|20[0-9][0-9])/([0][1-9]|1[0-2])/([0][1-9]|[1-2][0-9]|3[0-1])$",
               "arguments": [],
               "type": "regex"
             }
@@ -182,7 +182,7 @@
           "fieldCategory": "pvt",
           "format": "none",
           "fieldType": "default",
-          "$ref": "#/definitions/simpleType"
+          "type": "string"
         },
 
         "residenceStatus": {
