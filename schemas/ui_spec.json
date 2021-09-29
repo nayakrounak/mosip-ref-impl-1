@@ -115,7 +115,7 @@
     "id": "gender",
     "description": "gender",
     "label": {
-      "primary": "Genre"
+      "primary": "Gender"
     },
     "type": "simpleType",
     "minimum": 0,
