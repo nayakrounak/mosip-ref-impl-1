@@ -294,7 +294,7 @@
     "type": "simpleType",
     "minimum": 0,
     "maximum": 0,
-    "controlType": "textbox",
+    "controlType": "dropdown",
     "fieldType": "default",
     "format": "none",
     "fieldCategory": "pvt",
@@ -316,7 +316,6 @@
     "changeAction": null,
     "required": true
   },
-
   {
     "id": "houseName",
     "description": "House/Building number",
