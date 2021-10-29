@@ -54,8 +54,6 @@ export class LoginComponent implements OnInit {
   enableSendOtp: boolean;
   showCaptcha: boolean = true;
   captchaError: boolean;
-  captchaToken = null;
-  resetCaptcha: boolean;
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -85,7 +83,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginIdValidator() {
-    this.errorMessage = "";
+    this.errorMessage = undefined;
     const modes = this.configService.getConfigByKey(
       appConstants.CONFIG_KEYS.mosip_login_mode
     );
@@ -125,7 +123,7 @@ export class LoginComponent implements OnInit {
         this.configService.setConfig(response);
         this.setTimer();
         this.loadLanguagesWithConfig();
-        this.isCaptchaEnabled();
+        this.loadRecaptchaSiteKey();
       },
       (error) => {
         this.showErrorMessage();
@@ -133,32 +131,21 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  isCaptchaEnabled() {
+  loadRecaptchaSiteKey() {
     if (
-      this.configService.getConfigByKey(
-        "mosip.preregistration.captcha.enable"
-      ) === "false" ||
-      this.configService.getConfigByKey(
-        "mosip.preregistration.captcha.enable"
-      ) === undefined
+      this.configService.getConfigByKey("enable-captcha") === "false" ||
+      this.configService.getConfigByKey("enable-captcha") === undefined
     ) {
       this.enableCaptcha = false;
-    } else if (
-      this.configService.getConfigByKey(
-        "mosip.preregistration.captcha.enable"
-      ) === "true"
-    ) {
+    } else if (this.configService.getConfigByKey("enable-captcha") === "true") {
       this.enableCaptcha = true;
-      this.loadRecaptchaSiteKey();
     }
+    console.log(this.enableCaptcha + typeof this.enableCaptcha);
     if (!this.enableCaptcha) {
       this.enableSendOtp = true;
     }
-  }
-
-  loadRecaptchaSiteKey() {
     this.siteKey = this.configService.getConfigByKey(
-      "mosip.preregistration.captcha.site.key"
+      appConstants.CONFIG_KEYS.google_recaptcha_site_key
     );
   }
 
@@ -205,7 +192,7 @@ export class LoginComponent implements OnInit {
       this.languages.push(
         appConstants.languageMapping[this.primaryLangFromConfig].langName
       );
-      if (this.primaryLang !== this.secondaryLang) {
+      if(this.primaryLang !== this.secondaryLang){
         this.languages.push(
           appConstants.languageMapping[this.secondaryLangFromConfig].langName
         );
@@ -315,11 +302,31 @@ export class LoginComponent implements OnInit {
 
   submit(): void {
     this.loginIdValidator();
-    this.resetCaptcha = false;
+    if (
+      this.enableCaptcha &&
+      this.authService.isCaptchaAuthenticated() &&
+      this.errorMessage === undefined
+    ) {
+      this.showCaptcha = false;
+      this.captchaError = false;
+    } else if (
+      this.enableCaptcha &&
+      this.authService.isCaptchaAuthenticated() &&
+      this.errorMessage! == undefined
+    ) {
+      this.showCaptcha = true;
+    } else if (
+      this.enableCaptcha &&
+      !this.authService.isCaptchaAuthenticated() &&
+      this.errorMessage === undefined
+    ) {
+      this.captchaError = true;
+    }
     if (
       (this.showSendOTP || this.showResend) &&
-      this.errorMessage == "" &&
-      this.enableSendOtp
+      this.errorMessage === undefined &&
+      ((this.enableCaptcha && this.authService.isCaptchaAuthenticated()) ||
+        this.enableSendOtp)
     ) {
       console.log("test");
       this.inputOTP = "";
@@ -327,7 +334,7 @@ export class LoginComponent implements OnInit {
       this.showOTP = true;
       this.showSendOTP = false;
       this.showContactDetails = false;
-      this.showCaptcha = false;
+
       const timerFn = () => {
         let secValue = Number(document.getElementById("secondsSpan").innerText);
         const minValue = Number(
@@ -345,7 +352,7 @@ export class LoginComponent implements OnInit {
             this.showVerify = false;
             if (this.enableCaptcha) {
               this.showCaptcha = true;
-              this.enableSendOtp = false;
+              this.authService.setCaptchaAuthenticate(false);
             }
             document.getElementById("minutesSpan").innerText = this.minutes;
             document.getElementById("timer").style.visibility = "hidden";
@@ -372,29 +379,13 @@ export class LoginComponent implements OnInit {
         document.getElementById("timer").style.visibility = "visible";
         this.timer = setInterval(timerFn, 1000);
       }
+
       this.dataService
-      .sendOtpWithCaptcha(
-        this.inputContactDetails,
-        localStorage.getItem("langCode"),
-        this.captchaToken
-      )
-      .subscribe(
-        (response) => {
-         
-        },
-        (error) => {
-          if (this.enableCaptcha) {
-            this.resetCaptcha = true;
-            this.captchaToken = null;
-            this.enableSendOtp = false;
-            console.log("Resetting captcha:" + this.resetCaptcha);
-          }
-        }
-      );
-     
+        .sendOtp(this.inputContactDetails,this.primaryLang)
+        .subscribe((response) => {});
 
       // dynamic update of button text for Resend and Verify
-    } else if (this.showVerify && this.errorMessage === "") {
+    } else if (this.showVerify && this.errorMessage === undefined) {
       this.disableVerify = true;
       this.dataService
         .verifyOtp(this.inputContactDetails, this.inputOTP)
@@ -418,17 +409,6 @@ export class LoginComponent implements OnInit {
             this.showErrorMessage();
           }
         );
-    }
-  }
-
-  getCaptchaToken(event: Event) {
-    if (event !== undefined && event != null) {
-      console.log("Captcha event " + event);
-      this.captchaToken = event;
-      this.enableSendOtp = true;
-    } else {
-      console.log("Captcha has expired" + event);
-      this.enableSendOtp = false;
     }
   }
 
