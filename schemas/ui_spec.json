@@ -317,6 +317,37 @@
     "required": true
   },
   {
+    "id": "locality",
+    "description": "Locality",
+    "label": {
+      "primary": "Locality"
+    },
+    "type": "simpleType",
+    "minimum": 0,
+    "maximum": 0,
+    "controlType": "dropdown",
+    "fieldType": "default",
+    "format": "none",
+    "fieldCategory": "pvt",
+    "inputRequired": true,
+    "validators": [
+      {
+        "type": "regex",
+        "validator": "^(?=.{0,50}$).*",
+        "arguments": []
+      }
+    ],
+    "bioAttributes": null,
+    "requiredOn": [],
+    "subType": "locality",
+    "contactType": null,
+    "group": "Address",
+    "alignmentGroup": "Address",
+    "visible": null,
+    "changeAction": null,
+    "required": true
+  },
+  {
     "id": "houseName",
     "description": "House/Building number",
     "label": {

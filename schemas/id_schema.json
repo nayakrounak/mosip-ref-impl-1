@@ -71,6 +71,7 @@
         "residenceStatus",
         "state",
         "city",
+        "locality",
         "postalCode",
         "individualBiometrics"
       ],
@@ -161,6 +162,12 @@
           "$ref": "#/definitions/simpleType"
         },
         "city": {
+          "fieldCategory": "pvt",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/simpleType"
+        },
+        "locality": {
           "fieldCategory": "pvt",
           "format": "none",
           "fieldType": "default",
