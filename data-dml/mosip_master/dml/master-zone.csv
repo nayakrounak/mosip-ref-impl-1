@@ -1,2 +1,2 @@
-﻿code,name,hierarchy_level,hierarchy_level_name,hierarchy_path,parent_zone_code,lang_code,is_active,cr_by,cr_dtimes
-KTA,Kenitra,0,locality,KTA,,eng,TRUE,superadmin,now()
+code,name,hierarchy_level,hierarchy_level_name,hierarchy_path,parent_zone_code,lang_code,is_active,cr_by,cr_dtimes
+IND,India,0,INDIA,IND,,eng,TRUE,superadmin,now()
