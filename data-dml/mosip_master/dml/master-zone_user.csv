@@ -2,3 +2,4 @@ zone_code,usr_id,lang_code,is_active,cr_by,cr_dtimes
 IND,krish,eng,TRUE,superadmin,now()
 IND,ganesh,eng,TRUE,superadmin,now()
 IND,rounak,eng,TRUE,superadmin,now()
+IND,trialblazerseee,eng,TRUE,superadmin,now()
