@@ -278,6 +278,12 @@
           "fieldType": "default",
           "$ref": "#/definitions/documentType"
         },
+        "proofOfDateOfBirth": {
+          "fieldCategory": "evidence",
+          "format": "none",
+          "fieldType": "default",
+          "$ref": "#/definitions/documentType"
+        },
         "proofOfRelationship": {
           "fieldCategory": "evidence",
           "format": "none",
@@ -285,12 +291,6 @@
           "$ref": "#/definitions/documentType"
         },
         "proofOfAddress": {
-          "fieldCategory": "evidence",
-          "format": "none",
-          "fieldType": "default",
-          "$ref": "#/definitions/documentType"
-        },
-        "proofOfDateOfBirth": {
           "fieldCategory": "evidence",
           "format": "none",
           "fieldType": "default",

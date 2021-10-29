@@ -131,7 +131,7 @@
     "subType": "Gender",
     "contactType": null,
     "group": "Gender",
-    "alignmentGroup": "Personal informations",
+    "alignmentGroup": "Personal information",
     "visible": null,
     "changeAction": null,
     "required": true
@@ -284,7 +284,6 @@
     "changeAction": null,
     "required": true
   },
-
   {
     "id": "city",
     "description": "City",
@@ -522,6 +521,28 @@
     "required": true
   },
   {
+    "id": "proofOfDateOfBirth",
+    "description": "proofOfDateOfBirth",
+    "label": {
+      "primary": "Proof of birth"
+    },
+    "type": "documentType",
+    "minimum": 0,
+    "maximum": 0,
+    "controlType": "fileupload",
+    "fieldType": "default",
+    "format": "none",
+    "fieldCategory": "evidence",
+    "inputRequired": true,
+    "validators": [],
+    "bioAttributes": null,
+    "requiredOn": [],
+    "subType": "POB",
+    "contactType": null,
+    "group": "Documents",
+    "required": true
+  },
+  {
     "id": "proofOfRelationship",
     "description": "proofOfRelationship",
     "label": {
@@ -561,28 +582,6 @@
     "bioAttributes": null,
     "requiredOn": [],
     "subType": "POA",
-    "contactType": null,
-    "group": "Documents",
-    "required": false
-  },
-  {
-    "id": "proofOfDateOfBirth",
-    "description": "proofOfDateOfBirth",
-    "label": {
-      "primary": "Proof of birth"
-    },
-    "type": "documentType",
-    "minimum": 0,
-    "maximum": 0,
-    "controlType": "fileupload",
-    "fieldType": "default",
-    "format": "none",
-    "fieldCategory": "evidence",
-    "inputRequired": true,
-    "validators": [],
-    "bioAttributes": null,
-    "requiredOn": [],
-    "subType": "POB",
     "contactType": null,
     "group": "Documents",
     "required": false
