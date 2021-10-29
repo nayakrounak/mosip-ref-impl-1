@@ -163,5 +163,5 @@ id,name,description,data_type,value_json,lang_code,is_active,cr_by,cr_dtimes
 		""active"": true
 	}
 ]",eng,True,superadmin,2021-04-05 07:19:36.116378
-f7f79e5a-530b-4a32-b950-9d19e41ea169,gender,Gender,string,"[{""code"":""MLE"",""value"":""Male"",""langCode"":""eng"",""active"":true},{""code"":""FLE"",""value"":""Female"",""langCode"":""eng"",""active"":true},{""code"":""OTH"",""value"":""Others"",""langCode"":""eng"",""active"":true}]",eng,True,110127,2021-04-05 09:04:04.249377
-f5ee4289-c38c-4828-a323-d83214c6dc5c,residenceStatus,Residence Status,string,"[{""code"":""NFR"",""value"":""Resident"",""langCode"":""eng"",""active"":true},{""code"":""FR"",""value"":""Non-Resident"",""langCode"":""eng"",""active"":true}]",eng,True,110127,2021-04-05 09:05:25.023895
+10005,gender,Gender,string,"[{""code"":""MLE"",""value"":""Male"",""langCode"":""eng"",""active"":true},{""code"":""FLE"",""value"":""Female"",""langCode"":""eng"",""active"":true},{""code"":""OTH"",""value"":""Others"",""langCode"":""eng"",""active"":true}]",eng,True,110127,2021-04-05 09:04:04.249377
+10006,residenceStatus,Residence Status,string,"[{""code"":""NFR"",""value"":""Resident"",""langCode"":""eng"",""active"":true},{""code"":""FR"",""value"":""Non-Resident"",""langCode"":""eng"",""active"":true}]",eng,True,110127,2021-04-05 09:05:25.023895
