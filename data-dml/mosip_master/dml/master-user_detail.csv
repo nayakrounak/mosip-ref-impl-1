@@ -1,1 +1,4 @@
 id,uin,name,email,mobile,status_code,regcntr_id,lang_code,last_login_method,is_active,cr_by,cr_dtimes
+krish,,Krishnan,mosip@mosip.io,9999999999,ACT,10001,eng,PWD,TRUE,superadmin,now()
+ganesh,,Ganesh,mosip@mosip.io,9999999999,ACT,10001,eng,PWD,TRUE,superadmin,now()
+rounak,,Rounak,mosip@mosip.io,9999999999,ACT,10001,eng,PWD,TRUE,superadmin,now()
